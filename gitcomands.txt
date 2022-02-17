@@ -1,0 +1,37 @@
+# Comandos git
+git clone https://git.rancher.io/helm3-charts
+git remote add everton https://github.com/Everton83/helmjack.git
+git push -u everton master
+
+# Comandos git para enviar atualizações para o repositório git
+git add .
+git commit -m “comentario” 
+git push
+
+
+# Adicionar um repositorio helm
+helm repo add <nome> <url>
+
+# criação de chart básico
+helm create jacstack
+
+# Validação de syntax
+helm lint ./local
+
+# Simulação de instalação
+helm upgrade --install --dry-run <release> <chart>
+
+# Instalação de um chart
+helm install <release> <chart>
+
+# Atualização de um chart
+helm upgrade <release> <chart>
+
+# Atualização com opção de instalação (se não houver)
+helm upgrade --install <release> <chart>
+
+
+everton.pinheiro@outlook.com
+Livia2015@Su
+
+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

@@ -1,0 +1,34 @@
+#Verson antiga
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: everton-ingress
+  namespace: everton
+spec:
+  rules:
+  - host: everton.turmalinda.jac.bsb.br
+    http:
+      paths:
+      - backend:
+          serviceName: srv-theia
+          servicePort: 80
+
+#Verson nova
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: everton-ingress
+  namespace: everton
+spec:
+  rules:
+  - host: everton.turmalinda.jac.bsb.br
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: srv-theia
+            port:
+              number: 80

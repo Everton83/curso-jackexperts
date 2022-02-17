@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ide-everton
+  namespace: everton
+spec:
+  selector:
+    matchLabels:
+      app: ide-everton
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+       labels:
+         app: ide-everton
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      volumes:
+      - name: volume-theia
+        persistentVolumeClaim:
+          claimName: theia-ide-everton-pvc
+      containers:
+      - image: rishikoy/theiaide-full:1.0.0-SNAPSHOT
+        name: theia-ide
+        volumeMounts:
+        - mountPath: /home/project
+          name: volume-theia
